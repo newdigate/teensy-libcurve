@@ -13,7 +13,7 @@
 
 class DrawingCanvas {
 public:
-    inline DrawingCanvas() = default;
+    DrawingCanvas() { };
     virtual void drawPixel(int x, int y, uint16_t color) { writePixel(x,y, color); };
     virtual void drawLine(float x0, float y0, float x1, float y1, uint16_t color);
     virtual void drawCurve(float delta, float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, uint16_t color);

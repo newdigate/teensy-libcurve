@@ -11,8 +11,8 @@
 
 class DrawingCanvas_st7735 : public DrawingCanvas {
 public:
-    inline DrawingCanvas_st7735(
-            ST7735_t3 &tft) :
+    DrawingCanvas_st7735(
+            ST7735_t3 &tft) : DrawingCanvas(),
             _tft(&tft) {
     };
 
