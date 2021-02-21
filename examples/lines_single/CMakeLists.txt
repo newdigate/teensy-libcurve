@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 project(teensy_st7735_linux_extras_opengl_examples_lines C CXX)
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES lines.cpp)
-set(APP_NAME lines)
+set(SOURCE_FILES lines_single.cpp)
+set(APP_NAME lines_single)
 option(OPT_BUILD_FOR_LINUX "Build the example for linux" ON)
 option(OPT_BUILD_FOR_OPENGL_EMULATOR "Build the example for linux/opengl" ON)
 option(OPT_BUILD_EXAMPLES_USING_INSTALLED_LIB "Build examples using installed teensy-libcurve" ON)
@@ -78,7 +78,7 @@ ELSE()
     import_arduino_library_absolute(${CMAKE_SOURCE_DIR}/../../src)
 
     teensy_add_executable(teensy_libcurve_lines_example
-            lines.cpp)
+            lines_single.cpp)
 ENDIF()
 
 

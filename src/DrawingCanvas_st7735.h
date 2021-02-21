@@ -16,6 +16,14 @@ public:
             _tft(&tft) {
     };
 
+    void drawLine(float x0, float y0, float x1, float y1, uint16_t color, LineEndpointStyle startPointStyle, LineEndpointStyle endPointStyle) override {
+        if (_useAntialiasing)
+            DrawingCanvas::drawLine(x0, y0, x1, y1, color, startPointStyle, endPointStyle);
+        else
+            _tft->drawLine(x0, y0, x1, y1, color);
+    }
+protected:
+    bool useFramebuffer() override;
 private:
     ST7735_t3 *_tft;
     void writePixel(int x, int y, uint16_t color) override;
