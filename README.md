@@ -8,3 +8,4 @@ nice curves for st7735_t3 library (work in progess)
 * Some work to do when antialiasing and curve changes from steep to not steep or visa versa. 
 
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
+![curves - heart](docs/curves-heart.gif) 

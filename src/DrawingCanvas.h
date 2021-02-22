@@ -5,12 +5,20 @@
 #define TEENSY_LIBCURVE_DRAWING_CANVAS_H
 
 #include <cmath>
-#include <vector>
 #include "Arduino.h"
+#include <vector>
 
 #ifndef DrawingCanvas_swap
 #define DrawingCanvas_swap(a, b) { typeof(a) t = a; a = b; b = t; }
 #endif
+
+
+#define DrawingCanvas_abs(x) ({ \
+  typeof(x) _x = (x); \
+  (_x > 0) ? _x : -_x; \
+})
+
+
 enum LineEndpointStyle {
     None = 0,
     AntiAliased = 1,
@@ -59,8 +67,8 @@ protected:
         return 1.0f - frac_part(x);
     }
 private:
-    float getCurveLength(float delta, float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, float &longestXSection, float &longestYSection, vector<float> &points);
-    float getCurveLengthWithMaxDistance(float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, float maxDistance, float &longestXSection, float &longestYSection, vector<float> &points );
+    float getCurveLength(float delta, float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, float &longestXSection, float &longestYSection, std::vector<float> &points);
+    float getCurveLengthWithMaxDistance(float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, float maxDistance, float &longestXSection, float &longestYSection, std::vector<float> &points );
 };
 
 #endif //TEENSY_LIBCURVE_DRAWING_CANVAS_H

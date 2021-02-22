@@ -2,7 +2,7 @@
 #include "alphaBlendRGB565.h"
 //https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm
 void DrawingCanvas::drawLine(float x0, float y0, float x1, float y1, uint16_t color, LineEndpointStyle startPointStyle, LineEndpointStyle endPointStyle) {
-    bool steep = abs(y1 - y0) > abs(x1 - x0);
+    bool steep = DrawingCanvas_abs(y1 - y0) > DrawingCanvas_abs(x1 - x0);
     if (steep) {
         DrawingCanvas_swap(x0, y0);
         DrawingCanvas_swap(x1, y1);
@@ -177,7 +177,7 @@ void DrawingCanvas::drawCurve(float delta, float p0x, float p0y, float p1x, floa
 
 void DrawingCanvas::drawCurve(float delta, float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x, float p3y, uint16_t color, LineEndpointStyle startPointStyle, LineEndpointStyle endPointStyle) {
     float lX, lY;
-    vector<float> points;
+    std::vector<float> points;
     float curveLength = getCurveLengthWithMaxDistance(p0x, p0y, p1x, p1y, p2x, p2y, p3x, p3y, 1.0f, lX, lY, points);
     int iterations = ceil(curveLength) + 1;
     float delta2 = 1.0f / (ceil(curveLength) + 1);
@@ -185,8 +185,8 @@ void DrawingCanvas::drawCurve(float delta, float p0x, float p0y, float p1x, floa
     bool firstPoint = true;
 
     int16_t x = p0x, y = p0y;
-    vector<float> currentPixelXValues;
-    vector<float> currentPixelYValues;
+    std::vector<float> currentPixelXValues;
+    std::vector<float> currentPixelYValues;
     bool wasSteep = false;
     bool wasSteepWasSet = false;
     for( int it = 0; it < points.size() / 2; it++ )
@@ -205,43 +205,52 @@ void DrawingCanvas::drawCurve(float delta, float p0x, float p0y, float p1x, floa
             }
             float currentXAverage = currentPixelXAveragesSum / currentPixelXValues.size();
             float currentYAverage = currentPixelYAveragesSum / currentPixelYValues.size();
-            bool steep = (abs(py-currentYAverage) > abs (px-currentXAverage));
-            bool diag = (wasSteepWasSet && wasSteep != steep);
-            wasSteep = steep;
-            wasSteepWasSet = true;
-            if (!diag) {
+            if (!_useAntialiasing) {
+                drawPixel(x, y, color);
+            } else {
+                bool steep = (DrawingCanvas_abs(py - currentYAverage) > DrawingCanvas_abs(px - currentXAverage));
+                bool diag = (wasSteepWasSet && wasSteep != steep);
+                bool steepCopy = steep;
+                if (diag)
+                    steep = wasSteep;
+
+
+
                 if (steep) {
                     uint8_t alpha2 = rem_part(currentXAverage - x) * 255.0f;
-                    if (alpha2 > 15) {
+                    if (alpha2 > 1) {
                         uint16_t acolor2 = alphaBlendRGB565(color, _backgroundColor, alpha2);
                         drawPixel(x, y, acolor2);
                     }
                 } else {
                     uint8_t alpha2 = rem_part(currentYAverage - y) * 255.0f;
-                    if (alpha2 > 15) {
+                    if (alpha2 > 1) {
                         uint16_t acolor2 = alphaBlendRGB565(color, _backgroundColor, alpha2);
                         drawPixel(x, y, acolor2);
                     }
                 }
-            } else {
-                drawPixel(x, y, 0x07E0);
-            }
-            currentPixelXValues.clear();
-            currentPixelYValues.clear();
-            if (!diag) {
+
+                currentPixelXValues.clear();
+                currentPixelYValues.clear();
                 if (steep) {
                     uint8_t alpha2 = frac_part(currentXAverage - x) * 255.0f;
-                    if (alpha2 > 15) {
+                    if (alpha2 > 1) {
                         uint16_t acolor2 = alphaBlendRGB565(color, _backgroundColor, alpha2);
                         drawPixel(x + 1, y, acolor2);
                     }
                 } else {
                     uint8_t alpha2 = frac_part(currentYAverage - y) * 255.0f;
-                    if (alpha2 > 15) {
+                    if (alpha2 > 1) {
                         uint16_t acolor2 = alphaBlendRGB565(color, _backgroundColor, alpha2);
                         drawPixel(x, y + 1, acolor2);
                     }
                 }
+
+                if (diag)
+                    steep = steepCopy;
+
+                wasSteep = steep;
+                wasSteepWasSet = true;
             }
             x = px;
             y = py;
@@ -249,70 +258,6 @@ void DrawingCanvas::drawCurve(float delta, float p0x, float p0y, float p1x, floa
 
         currentPixelXValues.push_back(px);
         currentPixelYValues.push_back(py);
-
- /*
-
-        float i = it * delta2;
-        if (i > 1.0)
-            i = 1.0;
-        // The Green Lines
-        float xa = getPt( p0x , p1x , i );
-        float ya = getPt( p0y , p1y , i );
-        float xb = getPt( p1x , p2x , i );
-        float yb = getPt( p1y , p2y , i );
-        float xc = getPt( p2x , p3x , i );
-        float yc = getPt( p2y , p3y , i );
-
-        // The Blue Line
-        float xm = getPt( xa , xb , i );
-        float ym = getPt( ya , yb , i );
-        float xn = getPt( xb , xc , i );
-        float yn = getPt( yb , yc , i );
-
-        // The Black Dot
-        float x2 = getPt( xm , xn , i );
-        float y2 = getPt( ym , yn , i );
-        bool endPoint = it == iterations;
-/*
-        drawLine( x, y,
-                  x2, y2,
-                  color,
-                  firstPoint? startPointStyle : LineEndpointStyle::NoneAntialiased,
-                  endPoint? endPointStyle : LineEndpointStyle::NoneAntialiased);
-                  * /
-
-        bool steep = abs(y2 - y) > abs(x2 - x);
-        float remainder = (steep)? x2 : y2;
-        uint8_t alpha = rem_part( remainder  ) * 255.0;
-
-        /*
-        if (abs(floor(x2) - floor(x)) > 1 || abs(floor(y2) - floor(y)) > 1) {
-            drawLine(floor(x), floor(y),
-                     floor(x2), floor(y2),
-                     color,
-                     NoneAntialiased,
-                     NoneAntialiased);
-        } * /
-
-        if (abs(y2 - y) != abs(x2 - x)) {
-            drawPixel(x2, y2, alphaBlendRGB565(color, _backgroundColor, alpha));
-            if (steep)
-                drawPixel(x2 + 1, y2,
-                          alphaBlendRGB565(color, _backgroundColor, frac_part((steep) ? x2 : y2) * 255.0));
-            else
-                drawPixel(x2, y2 + 1,
-                          alphaBlendRGB565(color, _backgroundColor, frac_part((steep) ? x2 : y2) * 255.0));
-        } else
-        {
-            // 45 degrees
-            drawPixel(x2, y2, color);
-        }
-
-
-        x = x2;
-        y = y2;
-        firstPoint = false;
-    */
     }
 
 }
@@ -322,10 +267,10 @@ DrawingCanvas::getCurveLength(float p0x, float p0y, float p1x, float p1y, float 
     float distance = 0.0f, newDistance = -1.0f;
     uint16_t iteration = 1;
 
-    while (std::abs(distance - newDistance) > 0.0005f)
+    while (DrawingCanvas_abs(distance - newDistance) > 0.0005f)
     {
         distance = newDistance;
-        vector<float> points;
+        std::vector<float> points;
         newDistance = getCurveLength(1.0f/((iteration*2.0f)+1.0f), p0x,  p0y, p1x, p1y, p2x, p2y, p3x, p3y, longestXSection, longestYSection, points);
         iteration++;
     }
@@ -336,7 +281,7 @@ DrawingCanvas::getCurveLength(float p0x, float p0y, float p1x, float p1y, float 
 
 float
 DrawingCanvas::getCurveLength(float delta, float p0x, float p0y, float p1x, float p1y, float p2x, float p2y, float p3x,
-                              float p3y, float &longestXSection, float &longestYSection, vector<float> &points) {
+                              float p3y, float &longestXSection, float &longestYSection, std::vector<float> &points) {
     int16_t iterations = std::ceil( 1.0f / delta );
 
     float sumOfXdistance = 0.0f;
@@ -371,8 +316,8 @@ DrawingCanvas::getCurveLength(float delta, float p0x, float p0y, float p1x, floa
         float x2 = getPt( xm , xn , i );
         float y2 = getPt( ym , yn , i );
 
-        float lengthX = std::abs(x2 - x);
-        float lengthY = std::abs(y2 - y);
+        float lengthX = DrawingCanvas_abs(x2 - x);
+        float lengthY = DrawingCanvas_abs(y2 - y);
 
         if (lengthX > longestXSection ){
             longestXSection = lengthX;
@@ -389,13 +334,13 @@ DrawingCanvas::getCurveLength(float delta, float p0x, float p0y, float p1x, floa
         y = y2;
     }
 
-    return std::sqrtf(sumOfXdistance * sumOfXdistance +  sumOfYdistance*sumOfYdistance);
+    return std::sqrt(sumOfXdistance * sumOfXdistance +  sumOfYdistance*sumOfYdistance);
 
 }
 
 float DrawingCanvas::getCurveLengthWithMaxDistance(float p0x, float p0y, float p1x, float p1y, float p2x, float p2y,
                                                    float p3x, float p3y, float maxDistance, float &longestXSection,
-                                                   float &longestYSection, vector<float> &points) {
+                                                   float &longestYSection, std::vector<float> &points) {
 
     longestXSection = 0.0f;
     longestYSection = 0.0f;
