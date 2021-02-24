@@ -37,6 +37,9 @@ public:
     virtual void setBackgroundColor(uint16_t backgroundColor) {
         _backgroundColor = backgroundColor;
     }
+    virtual void setUseFramebuffer(bool useFrameBuffer) {
+        _useFramebuffer = useFrameBuffer;
+    }
 
     virtual uint16_t getPixel(int x, int y) {
         if(useFramebuffer())
@@ -51,7 +54,7 @@ protected:
     virtual bool useFramebuffer() { return false; };
     virtual uint16_t readPixel(int x, int y) = 0;
     virtual void writePixel(int x, int y, uint16_t color) = 0;
-
+    bool _useFramebuffer = false;
     inline float getPt( float n1 , float n2 , float perc )
     {
         float diff = n2 - n1;

@@ -4,7 +4,12 @@
 
 #ifdef BUILD_FOR_OPENGL_EMULATOR
 #include <st7735_opengl.h>
-st7735_opengl tft = st7735_opengl(true);
+st7735_opengl tft = st7735_opengl(true, 10);
+void my_yield() {
+    if(!tft.shouldClose()) {
+        tft.updateScreen();
+    }
+}
 #else
 #include "ST7735_t3.h"
 ST7735_t3 tft = ST7735_t3(1,2,3);
@@ -14,14 +19,6 @@ DrawingCanvas_st7735 canvas(tft);
 
 uint16_t color = ST7735_WHITE;
 uint16_t bgcolor = ST7735_BLACK;
-
-#ifdef BUILD_FOR_OPENGL_EMULATOR
-void my_yield() {
-    if(!tft.shouldClose()) {
-        tft.update();
-    }
-}
-#endif
 
 bool useFrameBuffer = true;
 

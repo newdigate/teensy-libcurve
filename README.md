@@ -9,3 +9,6 @@ nice curves for st7735_t3 library (work in progess)
 
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
+
+### Xiaolin Wu's line algorithm
+* [wikipedia](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)

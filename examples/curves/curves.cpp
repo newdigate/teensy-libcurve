@@ -5,13 +5,17 @@
 #ifdef BUILD_FOR_OPENGL_EMULATOR
 #include <st7735_opengl.h>
 st7735_opengl tft = st7735_opengl(true,10);
+void my_yield() {
+    if(!tft.shouldClose()) {
+        tft.updateScreen();
+    }
+}
 #else
 #include "ST7735_t3.h"
 ST7735_t3 tft = ST7735_t3(1,2,3);
 #endif
 
 DrawingCanvas_st7735 canvas(tft);
-float p = 3.1415926;
 
 void testcurves(float x, float y, float amp);
 void testlines(float x, float y,float phase);
@@ -22,14 +26,6 @@ void drawTestLines(const float *points, uint16_t color, uint16_t pointscolor);
 uint16_t color = ST7735_WHITE;
 uint16_t bgcolor = ST7735_BLACK;
 uint16_t pointscolor = ST7735_RED;
-
-#ifdef BUILD_FOR_OPENGL_EMULATOR
-void my_yield() {
-    if(!tft.shouldClose()) {
-        tft.update();
-    }
-}
-#endif
 
 bool useFrameBuffer = true;
 uint16_t phase = 0;
