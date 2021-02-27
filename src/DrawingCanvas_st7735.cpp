@@ -11,4 +11,8 @@ uint16_t DrawingCanvas_st7735::readPixel(int x, int y) {
         return _backgroundColor;
 }
 
+bool DrawingCanvas_st7735::useFramebuffer() {
+    return false;
+}
+
 
