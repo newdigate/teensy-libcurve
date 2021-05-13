@@ -41,6 +41,10 @@ public:
         _useFramebuffer = useFrameBuffer;
     }
 
+    void setUseAntialiasing(bool useAntialiasing){
+        _useAntialiasing = useAntialiasing;
+    }
+
     virtual uint16_t getPixel(int x, int y) {
         if(useFramebuffer())
             return readPixel(x, y);
