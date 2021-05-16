@@ -1,6 +1,15 @@
 # teensy-libcurve
 nice curves for st7735_t3 library (work in progess)
 
+* wouldnt it be awesome if we could display SVG files on teensy? 
+* also, I really hate lines that are not antialiased...  (but there is an option to turn it on and off)
+* and thirdly I'd like to be able to compile and debug on linux...
+* This is not an efficient way of calculating a bezier curve. 
+* Some work to do when antialiasing and curve changes from steep to not steep or visa versa. 
+
+![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
+![curves - heart](docs/curves-heart.gif) 
+
 * [download](#download)
 * [teensy](#teensy)
   * [dependencies](#dependencies)
@@ -11,15 +20,6 @@ nice curves for st7735_t3 library (work in progess)
   * [build](#build)
   * [install](#install) 
 * [Xiaolin Wu's line algorithm](#xiaolin-wus-line-algorithm)
-
-* wouldnt it be awesome if we could display SVG files on teensy? 
-* also, I really hate lines that are not antialiased...  (but there is an option to turn it on and off)
-* and thirdly I'd like to be able to compile and debug on linux...
-* This is not an efficient way of calculating a bezier curve. 
-* Some work to do when antialiasing and curve changes from steep to not steep or visa versa. 
-
-![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
-![curves - heart](docs/curves-heart.gif) 
 
 ## download
 * download and uncompress .zip
