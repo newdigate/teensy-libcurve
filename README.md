@@ -10,20 +10,44 @@ nice curves for st7735_t3 library (work in progess)
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
 
-## install as arduino library
-* download or ```git clone https://github.com/newdigate/teensy-libcurve```
+## download
+* download and uncompress .zip
+* or ```git clone https://github.com/newdigate/teensy-libcurve```
+
+## build
+### teensy
+```
+  > cd teensy-libcurve
+  > mkdir cmake-build-teensy && cd cmake-build-teensy
+  > cmake ../src -DCMAKE_BUILD_TYPE=Debug
+  > make
+```
+### linux
+```
+  > cd teensy-libcurve
+  > mkdir cmake-build-linux && cd cmake-build-linux
+  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
+  > make
+```
+
+## install 
+### arduino library
 * create shortcut/symlink to ```src``` folder in your Arduino Libraries folder
 * there is a cmake target to creates a symlink to ```~/Documents/Arduino/Libraries``` (for macos)
 ``` shell
-  > git clone https://github.com/newdigate/teensy-libcurve
   > cd teensy-libcurve/src
   > mkdir cmake-build-debug
   > cd cmake-build-debug
   > cmake -DCMAKE_BUILD_TYPE=Debug ..
   > make installarduino
 ```
-* this will create a symlink to the `src` folder in your Arduino Libraries folder
-
+### linux library
+```
+  > cd teensy-libcurve
+  > mkdir cmake-build-linux && cd cmake-build-linux
+  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
+  > sudo make install
+```
 
 ### Xiaolin Wu's line algorithm
 * [wikipedia](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
