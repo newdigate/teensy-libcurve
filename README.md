@@ -14,15 +14,16 @@ nice curves for st7735_t3 library (work in progess)
 * download and uncompress .zip
 * or ```git clone https://github.com/newdigate/teensy-libcurve```
 
-## dependencies
+## teensy
+### dependencies
 * [arm-eabi-none-gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
+* [newdigate](https://github.com/newdigate)
+  * [teensy-cmake-macros](https://github.com/newdigate/teensy-cmake-macros) 
 * [PaulStoffregen](https://github.com/PaulStoffregen)
   * [cores](https://github.com/PaulStoffregen/cores)
   * [ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3)
   * [SPI](https://github.com/PaulStoffregen/SPI)
-
-## build
-### teensy
+### build
 * clone the dependencies above to a chosen folder (in this case ```~/temp_dep```)
 ``` shell
  > mkdir ~/temp_dep && cd ~/temp_dep
@@ -42,16 +43,8 @@ nice curves for st7735_t3 library (work in progess)
   > cmake ../src -DCMAKE_BUILD_TYPE=Debug
   > make
 ```
-### linux
-```
-  > cd teensy-libcurve
-  > mkdir cmake-build-linux && cd cmake-build-linux
-  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
-  > make
-```
 
-## install 
-### arduino library
+### install arduino library
 * create shortcut/symlink to ```src``` folder in your Arduino Libraries folder
 * there is a cmake target to creates a symlink to ```~/Documents/Arduino/Libraries``` (for macos)
 ``` shell
@@ -62,7 +55,24 @@ nice curves for st7735_t3 library (work in progess)
   > make installarduino
 ``` 
 
-### linux library
+
+## linux
+```
+  > cd teensy-libcurve
+  > mkdir cmake-build-linux && cd cmake-build-linux
+  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
+  > make
+```
+
+### dependencies
+ * [newdigate](https://github.com/newdigate)
+   * [teensy-x86-stubs](https://github.com/newdigate/teensy-x86-stubs)
+   * [teensy-st7735-linux-stubs](https://github.com/newdigate/teensy-st7735-linux-stubs)
+### build
+  * install dependencies
+  * 
+### install 
+* install
 ``` shell
   > cd teensy-libcurve
   > mkdir cmake-build-linux && cd cmake-build-linux
