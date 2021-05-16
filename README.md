@@ -10,5 +10,17 @@ nice curves for st7735_t3 library (work in progess)
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
 
+## install arduino library
+``` shell
+  > git clone https://github.com/newdigate/teensy-libcurve
+  > cd teensy-libcurve/src
+  > mkdir cmake-build-debug
+  > cd cmake-build-debug
+  > cmake -DCMAKE_BUILD_TYPE=Debug ..
+  > make installarduino
+```
+* this will create a symlink to the `src` folder in your Arduino Libraries folder
+
+
 ### Xiaolin Wu's line algorithm
 * [wikipedia](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
