@@ -72,20 +72,20 @@ nice curves for st7735_t3 library (work in progess)
 
 
 ## linux
-```
-  > cd teensy-libcurve
-  > mkdir cmake-build-linux && cd cmake-build-linux
-  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
-  > make
-```
-
 ### dependencies
  * [newdigate](https://github.com/newdigate)
    * [teensy-x86-stubs](https://github.com/newdigate/teensy-x86-stubs)
    * [teensy-st7735-linux-stubs](https://github.com/newdigate/teensy-st7735-linux-stubs)
 ### build
   * install dependencies
-  * 
+    * install each dependency as per instructions on repository ```README.md``` 
+  * build
+``` shell
+  > cd teensy-libcurve
+  > mkdir cmake-build-linux && cd cmake-build-linux
+  > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
+  > make
+```
 ### install 
 ``` shell
   > cd teensy-libcurve
