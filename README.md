@@ -15,15 +15,16 @@ nice curves for st7735_t3 library (work in progess)
 * or ```git clone https://github.com/newdigate/teensy-libcurve```
 
 ## dependencies
-* [PaulStoffregen/cores](https://github.com/PaulStoffregen/cores)
-* [PaulStoffregen/ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3)
-* [PaulStoffregen/SPI](https://github.com/PaulStoffregen/SPI)
+* [PaulStoffregen](https://github.com/PaulStoffregen)
+  * [cores](https://github.com/PaulStoffregen/cores)
+  * [ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3)
+  * [SPI](https://github.com/PaulStoffregen/SPI)
 
 ## build
 ### teensy
-* clone the dependencies above to a chosen folder 
+* clone the dependencies above to a chosen folder (in this case ```~/temp_dep``)
 ```
- > mkdir temp_dep && cd temp_dep
+ > mkdir ~/temp_dep && cd ~/temp_dep
  > git clone https://github.com/PaulStoffregen/cores
  > git clone https://github.com/PaulStoffregen/ST7735_t3
  > git clone https://github.com/PaulStoffregen/SPI
@@ -31,7 +32,7 @@ nice curves for st7735_t3 library (work in progess)
 * open ```src/CMakeLists.teensy.cmake.in```
   * update ```set(COMPILERPATH "/Applications/ARM/bin/")``` 
     * point to installation bin folder of [arm-eabi-none-gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
-  * update ```set(DEPSPATH "/Users/xxx/Documents/Arduino/Library")``` 
+  * update ```set(DEPSPATH "/Users/xxx/temp_dep")``` 
     * point to dependencies folder     
 * build 
 ``` shell
