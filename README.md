@@ -10,7 +10,10 @@ nice curves for st7735_t3 library (work in progess)
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
 
-## install arduino library
+## install as arduino library
+you need to create shortcut/symlink to ```src``` folder in your Arduino Libraries folder
+
+* there is a cmake target to creates a symlink to ```~/Documents/Arduino/Libraries``` (for macos)
 ``` shell
   > git clone https://github.com/newdigate/teensy-libcurve
   > cd teensy-libcurve/src
