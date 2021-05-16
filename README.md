@@ -80,5 +80,5 @@ nice curves for st7735_t3 library (work in progess)
   > sudo make install
 ```
 
-### Xiaolin Wu's line algorithm
+## Xiaolin Wu's line algorithm
 * [wikipedia](https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm)
