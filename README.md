@@ -1,4 +1,7 @@
 # teensy-libcurve
+[![teensy-libcurve](https://github.com/newdigate/teensy-libcurve/actions/workflows/teensy.yml/badge.svg)](https://github.com/newdigate/teensy-libcurve/actions/workflows/teensy.yml)
+[![teensy-libcurve-ubuntu-x86](https://github.com/newdigate/teensy-libcurve/actions/workflows/ubuntu_x64_cmake.yml/badge.svg)](https://github.com/newdigate/teensy-libcurve/actions/workflows/ubuntu_x64_cmake.yml)
+
 nice curves for st7735_t3 library (work in progess)
 
 * wouldnt it be awesome if we could display SVG files on teensy? 
