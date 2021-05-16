@@ -14,9 +14,27 @@ nice curves for st7735_t3 library (work in progess)
 * download and uncompress .zip
 * or ```git clone https://github.com/newdigate/teensy-libcurve```
 
+## dependencies
+* [PaulStoffregen/cores](https://github.com/PaulStoffregen/cores)
+* [PaulStoffregen/ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3)
+* [PaulStoffregen/SPI](https://github.com/PaulStoffregen/SPI)
+
 ## build
 ### teensy
+* clone the dependencies above to a chosen folder 
 ```
+ > mkdir temp_dep && cd temp_dep
+ > git clone https://github.com/PaulStoffregen/cores
+ > git clone https://github.com/PaulStoffregen/ST7735_t3
+ > git clone https://github.com/PaulStoffregen/SPI
+```
+* open ```src/CMakeLists.teensy.cmake.in```
+  * update ```set(COMPILERPATH "/Applications/ARM/bin/")``` 
+    * point to installation bin folder of [arm-eabi-none-gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
+  * update ```set(DEPSPATH "/Users/xxx/Documents/Arduino/Library")``` 
+    * point to dependencies folder     
+* build 
+``` shell
   > cd teensy-libcurve
   > mkdir cmake-build-teensy && cd cmake-build-teensy
   > cmake ../src -DCMAKE_BUILD_TYPE=Debug
@@ -40,9 +58,9 @@ nice curves for st7735_t3 library (work in progess)
   > cd cmake-build-debug
   > cmake -DCMAKE_BUILD_TYPE=Debug ..
   > make installarduino
-```
+``` 
 ### linux library
-```
+``` shell
   > cd teensy-libcurve
   > mkdir cmake-build-linux && cd cmake-build-linux
   > cmake ../src -DCMAKE_BUILD_TYPE=Debug -DOPT_BUILD_FOR_LINUX=ON
