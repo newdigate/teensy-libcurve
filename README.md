@@ -22,8 +22,8 @@ nice curves for st7735_t3 library (work in progess)
 
 ## build
 ### teensy
-* clone the dependencies above to a chosen folder (in this case ```~/temp_dep``)
-```
+* clone the dependencies above to a chosen folder (in this case ```~/temp_dep```)
+``` shell
  > mkdir ~/temp_dep && cd ~/temp_dep
  > git clone https://github.com/PaulStoffregen/cores
  > git clone https://github.com/PaulStoffregen/ST7735_t3
@@ -60,6 +60,7 @@ nice curves for st7735_t3 library (work in progess)
   > cmake -DCMAKE_BUILD_TYPE=Debug ..
   > make installarduino
 ``` 
+
 ### linux library
 ``` shell
   > cd teensy-libcurve
