@@ -15,6 +15,7 @@ nice curves for st7735_t3 library (work in progess)
 * or ```git clone https://github.com/newdigate/teensy-libcurve```
 
 ## dependencies
+* [arm-eabi-none-gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
 * [PaulStoffregen](https://github.com/PaulStoffregen)
   * [cores](https://github.com/PaulStoffregen/cores)
   * [ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3)
