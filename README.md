@@ -2,13 +2,14 @@
 [![teensy-libcurve](https://github.com/newdigate/teensy-libcurve/actions/workflows/teensy.yml/badge.svg)](https://github.com/newdigate/teensy-libcurve/actions/workflows/teensy.yml)
 [![teensy-libcurve-ubuntu-x86](https://github.com/newdigate/teensy-libcurve/actions/workflows/ubuntu_x64_cmake.yml/badge.svg)](https://github.com/newdigate/teensy-libcurve/actions/workflows/ubuntu_x64_cmake.yml)
 
-nice curves for st7735_t3 library (work in progess)
+nice curves for [PaulStoffregen/ST7735_t3](https://github.com/PaulStoffregen/ST7735_t3) and [newdigate/teensy-st7735-linux-stubs](https://github.com/newdigate/teensy-st7735-linux-stubs) 
 
-* wouldnt it be awesome if we could display SVG files on teensy? 
-* also, I really hate lines that are not antialiased...  (but there is an option to turn it on and off)
-* and thirdly I'd like to be able to compile and debug on linux...
-* This is not an efficient way of calculating a bezier curve. 
-* Some work to do when antialiasing and curve changes from steep to not steep or visa versa. 
+* work in progress 
+* antialiased lines and bezier curves  (there is an option to turn antialiasing on / off)
+* compile for teensy or linux
+* disclaimer - this is not an efficient way of calculating a bezier curve. 
+* potential improvements
+  * tiny distortion when antialiasing and curve changes from steep to not steep or visa versa
 
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
