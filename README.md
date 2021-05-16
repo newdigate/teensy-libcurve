@@ -10,6 +10,7 @@ nice curves for st7735_t3 library (work in progess)
 ![curves - no antialiasing](docs/curves-noantialiasing.gif)  ![curves - antialiazing](docs/curves.gif)
 ![curves - heart](docs/curves-heart.gif) 
 
+## contents
 * [download](#download)
 * [teensy](#teensy)
   * [dependencies](#dependencies)
