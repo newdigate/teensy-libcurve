@@ -1,6 +1,17 @@
 # teensy-libcurve
 nice curves for st7735_t3 library (work in progess)
 
+* [download](#download)
+* [teensy](#teensy)
+  * [dependencies](#dependencies)
+  * [build](#build)
+  * [install arduino library](#install-arduino-library)
+* [linux](#linux)
+  * [dependencies](#dependencies) 
+  * [build](#build)
+  * [install](#install) 
+* [Xiaolin Wu's line algorithm](#xiaolin-wus-line-algorithm)
+
 * wouldnt it be awesome if we could display SVG files on teensy? 
 * also, I really hate lines that are not antialiased...  (but there is an option to turn it on and off)
 * and thirdly I'd like to be able to compile and debug on linux...
