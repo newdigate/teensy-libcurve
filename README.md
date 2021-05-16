@@ -72,7 +72,6 @@ nice curves for st7735_t3 library (work in progess)
   * install dependencies
   * 
 ### install 
-* install
 ``` shell
   > cd teensy-libcurve
   > mkdir cmake-build-linux && cd cmake-build-linux
